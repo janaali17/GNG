@@ -6,6 +6,7 @@ const sqlite3 = require('sqlite3') //imported sqlite(database)
 const data = new sqlite3.Database('inputs.data')
 
 
+app.get('/', (req, res) => { res.send("hello jana") }) 
 app.listen(port,()=>{
     console.log(`Server is running at port: ${port}`)
 })
