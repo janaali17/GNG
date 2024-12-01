@@ -18,15 +18,23 @@ const createusertable= `CREATE TABLE IF NOT EXISTS user(
     username text noty null,
     password text not null,
 )`
-app.post('/user/register', (req, res) => {
+app.post('/user/register', (req, res) => { // route
     let fullname = req.body.fullname 
     let email = req.body.email
     let number = req.body.number
     let address = req.body.address
     let username = req.body.username
     let password = req.body.password
-    data.run(`insert into user(fullname,email,number,address,username,password) values('${fullname}','${email}','${number}','${address}','${username}','${password}')`)
+    data.run(`insert into user(fullname,email,number,address,username,password) values('${fullname}','${email}','${number}','${address}','${username}','${password}')`,(err) => {
+        if (err) {
+            console.log(err.message)
+            return res.send(err)
+        } 
+        else 
+        return res.send("Welcome to Glow N Grace")
+    })
 }) 
+
 // const createskinscaretable= 
 // const createnmakeuptable=
 // const createfeedbacktable=
@@ -38,4 +46,14 @@ app.post('/user/register', (req, res) => {
 
 app.listen(port,()=>{
     console.log(`Server is running at port: ${port}`)
+    data.serialize( () => {
+        data.exec(createusertable,(err) =>{
+    
+            if (err) {
+                console.error('error creating user table', err) 
+            } else {
+                console.log("successfully created")
+            }
+        }) 
+    } )
 })
