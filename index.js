@@ -12,5 +12,11 @@ app.listen(port,()=>{
 })
 
 const createusertable= `CREATE TABLE IF NOT EXISTS user(
-    ID integer primary key autoincrement 
+    ID integer primary key autoincrementm, 
+    full name text not null,
+    email text not null,
+    number text not null,
+    address text,
+    username text noty null,
+    password text not null,
 )`
