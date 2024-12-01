@@ -11,3 +11,6 @@ app.listen(port,()=>{
     console.log(`Server is running at port: ${port}`)
 })
 
+const createusertable= `CREATE TABLE IF NOT EXISTS user(
+    ID integer primary key autoincrement 
+)`
