@@ -7,16 +7,29 @@ const data = new sqlite3.Database('inputs.data')
 
 
 app.get('/', (req, res) => { res.send("hello jana") }) 
-app.listen(port,()=>{
-    console.log(`Server is running at port: ${port}`)
-})
+
 
 const createusertable= `CREATE TABLE IF NOT EXISTS user(
     ID integer primary key autoincrementm, 
-    full name text not null,
+    fullname text not null,
     email text not null,
     number text not null,
     address text,
     username text noty null,
     password text not null,
 )`
+app.post('/user/register', (req, res) => {
+    let fullname = req.body.fullname 
+}) 
+// const createskinscaretable= 
+// const createnmakeuptable=
+// const createfeedbacktable=
+// const createappoinmentable=
+// const createfindstor=
+
+
+
+
+app.listen(port,()=>{
+    console.log(`Server is running at port: ${port}`)
+})
