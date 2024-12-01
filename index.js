@@ -1,22 +1,22 @@
 const express = require('express'); //assigning require express to express
 const app = express()
 const port = 1784 //assigning the port num to 1784
-app.use(express.json) //change to readable form
+app.use(express.json()) //change to readable form
 const sqlite3 = require('sqlite3') //imported sqlite(database) 
 const data = new sqlite3.Database('inputs.data')
 
 
-app.get('/', (req, res) => { res.send("hello jana") }) 
+app.get('/', (req, res) => { res.send("welcome to GNG") }) 
 
 
 const createusertable= `CREATE TABLE IF NOT EXISTS user(
-    ID integer primary key autoincrementm, 
+    ID integer primary key autoincrement, 
     fullname text not null,
     email text not null,
     number text not null,
     address text,
     username text noty null,
-    password text not null,
+    password text not null
 )`
 app.post('/user/register', (req, res) => { // route
     let fullname = req.body.fullname 
@@ -52,7 +52,7 @@ app.listen(port,()=>{
             if (err) {
                 console.error('error creating user table', err) 
             } else {
-                console.log("successfully created")
+                console.log("the table was created successfully")
             }
         }) 
     } )
