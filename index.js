@@ -20,6 +20,12 @@ const createusertable= `CREATE TABLE IF NOT EXISTS user(
 )`
 app.post('/user/register', (req, res) => {
     let fullname = req.body.fullname 
+    let email = req.body.email
+    let number = req.body.number
+    let address = req.body.address
+    let username = req.body.username
+    let password = req.body.password
+    data.run(`insert into user(fullname,email,number,address,username,password) values('${fullname}','${email}','${number}','${address}','${username}','${password}')`)
 }) 
 // const createskinscaretable= 
 // const createnmakeuptable=
