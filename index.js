@@ -15,7 +15,7 @@ const createusertable= `CREATE TABLE IF NOT EXISTS user(
     email text not null,
     number text not null,
     address text,
-    username text noty null,
+    username text not null,
     password text not null
 )`
 app.post('/user/register', (req, res) => { // route
@@ -35,11 +35,68 @@ app.post('/user/register', (req, res) => { // route
     })
 }) 
 
-// const createskinscaretable= 
-// const createnmakeuptable=
+const createskinscaretable= `CREATE TABLE IF NOT EXISTS skincare(
+    ID integer primary key autoincrement, 
+    prouducttype text not null,
+    age text not null,
+    skintype text not null,
+    price integer not null,
+    brandname text
+)`
+app.post('/skincarequery', (req, res) => { // route
+    let prouducttype = req.body.prouducttype 
+    let age = req.body.age
+    let skintype = req.body.skintype
+    let price = req.body.price
+    let brandname = req.body.brandname
+    data.run(`insert into skincare(prouducttype,age,skintype,price,barndname) values('${prouducttype}','${age}','${skintype}','${price}','${brandname}')`,(err) => {
+        if (err) {
+            console.log(err.message)
+            return res.send(err)
+        } 
+        else 
+        return res.send("your product has been added")
+    })
+}) 
+
+
+
+const createappointmentable= `CREATE TABLE IF NOT EXISTS appoinment(
+    ID integer primary key autoincrement, 
+    name text not null,
+    diagnosis text not null,
+    doctor_name text not null,
+    time intger not null
+)`
+ app.post('/booking/appointment', (req, res) => { // route
+     let name = req.body.name 
+     let diagnosis = req.body.diagnosis
+     let doctor_name = req.body.doctor_name
+    let time = req.body.time
+    
+    data.run(`insert into skincare(name,diagnosis,doctor_name,time) values('${name}','${diagnosis}','${doctor_name}','${time}')`,(err) => {
+         if (err) {
+             console.log(err.message)
+            return res.send(err)
+        } 
+        else 
+        return res.send("your apoointment has been created")
+        })
+    }) 
+
+
+
+
+
+
+
+
+
+
+
+
+// const createfindstore= 
 // const createfeedbacktable=
-// const createappoinmentable=
-// const createfindstor=
 
 
 
