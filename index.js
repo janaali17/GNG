@@ -49,7 +49,7 @@ app.post('/skincarequery', (req, res) => { // route
     let skintype = req.body.skintype
     let price = req.body.price
     let brandname = req.body.brandname
-    data.run(`insert into skincare(prouducttype,age,skintype,price,barndname) values('${prouducttype}','${age}','${skintype}','${price}','${brandname}')`,(err) => {
+    data.run(`insert into skincare(prouducttype,age,skintype,price,barndname) values('${prouducttype}','${age}','${skintype}',${price},'${brandname}')`,(err) => {
         if (err) {
             console.log(err.message)
             return res.send(err)
@@ -74,7 +74,7 @@ const createappointmentable= `CREATE TABLE IF NOT EXISTS appoinment(
      let doctor_name = req.body.doctor_name
     let time = req.body.time
     
-    data.run(`insert into skincare(name,diagnosis,doctor_name,time) values('${name}','${diagnosis}','${doctor_name}','${time}')`,(err) => {
+    data.run(`insert into skincare(name,diagnosis,doctor_name,time) values('${name}','${diagnosis}','${doctor_name}',${time})`,(err) => {
          if (err) {
              console.log(err.message)
             return res.send(err)
@@ -93,7 +93,7 @@ app.post('/find/store', (req, res) => { // route
     let product_id = req.body.product_id 
     let location = req.body.location
    
-   data.run(`insert into findstore (product_id,location) values('${product_id}','${location}')`,(err) => {
+   data.run(`insert into findstore (product_id,location) values(${product_id},'${location}')`,(err) => {
         if (err) {
             console.log(err.message)
            return res.send(err)
@@ -105,7 +105,26 @@ app.post('/find/store', (req, res) => { // route
 
 const createfeedbacktable= `CREATE TABLE IF NOT EXISTS feedback(
     ID integer primary key autoincrement, 
-    
+    feedbackid integer, 
+    username text not null,
+    rating integer,
+    feedback_message text
+ )`
+ app.post('/feedback', (req, res) => { // route
+    let feedbackid = req.body.feedbackid 
+    let username = req.body.username
+    let rating = req.body.rating
+   let feedback_message = req.body.feedback_message
+   
+   data.run(`insert into feedback(feedbackid,username,rating,feedback_message) values(${feedbackid},'${username}',${rating},${feedback_message})`,(err) => {
+        if (err) {
+            console.log(err.message)
+           return res.send(err)
+       } 
+       else 
+       return res.send("your feedback has been created")
+       })
+   })
 
 
 
@@ -137,6 +156,14 @@ app.listen(port,()=>{
             } else {
             console.log("the store table was created successfully")
             }
-} )
+        })
+        data.exec(createfeedbacktable,(err) =>{
+    
+            if (err) {
+            console.error('error creating feedback table', err) 
+            } else {
+            console.log("the feedback table was created successfully")
+            }
+        })
 })
 })
