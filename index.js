@@ -112,5 +112,12 @@ app.listen(port,()=>{
                 console.log("the table was created successfully")
             }
         }) 
+        data.exec(createskinscaretable,(err) =>{
+    
+            if (err) {
+                console.error('error creating skincare table', err) 
+            } else {
+                console.log("the table was created successfully")
+            }
     } )
 })
