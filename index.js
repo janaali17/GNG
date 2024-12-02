@@ -84,17 +84,29 @@ const createappointmentable= `CREATE TABLE IF NOT EXISTS appoinment(
         })
     })
 
-const createfindstore= `CREATE TABLE IF NOT EXISTS appoinment(
+const createfindstoretable= `CREATE TABLE IF NOT EXISTS findstore(
+    ID integer primary key autoincrement, 
     product_id integer not null,
+    location text not null
+)` 
+app.post('/find/store', (req, res) => { // route
+    let product_id = req.body.product_id 
+    let location = req.body.location
+   
+   data.run(`insert into findstore (product_id,location) values('${product_id}','${location}')`,(err) => {
+        if (err) {
+            console.log(err.message)
+           return res.send(err)
+       } 
+       else 
+       return res.send("your store table has been created")
+       })
+   })
+
+const createfeedbacktable= `CREATE TABLE IF NOT EXISTS feedback(
+    ID integer primary key autoincrement, 
     
 
-
-
-
-
-
-
-// const createfeedbacktable=
 
 
 
@@ -107,7 +119,7 @@ app.listen(port,()=>{
             if (err) {
                 console.error('error creating user table', err) 
             } else {
-                console.log("the table was created successfully")
+                console.log("the user table was created successfully")
             }
         }) 
         data.exec(createskinscaretable,(err) =>{
@@ -115,7 +127,16 @@ app.listen(port,()=>{
             if (err) {
                 console.error('error creating skincare table', err) 
             } else {
-                console.log("the table was created successfully")
+                console.log("the skincare table was created successfully")
             }
-    } )
+        })
+        data.exec(createfindstoretable,(err) =>{
+    
+            if (err) {
+            console.error('error creating find store table', err) 
+            } else {
+            console.log("the store table was created successfully")
+            }
+} )
+})
 })
