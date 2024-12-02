@@ -82,7 +82,7 @@ const createappointmentable= `CREATE TABLE IF NOT EXISTS appoinment(
         else 
         return res.send("your apoointment has been created")
         })
-    }) 
+    })
 
 
 
