@@ -84,6 +84,9 @@ const createappointmentable= `CREATE TABLE IF NOT EXISTS appoinment(
         })
     })
 
+const createfindstore= `CREATE TABLE IF NOT EXISTS appoinment(
+    product_id integer not null,
+    
 
 
 
@@ -91,11 +94,6 @@ const createappointmentable= `CREATE TABLE IF NOT EXISTS appoinment(
 
 
 
-
-
-
-
-// const createfindstore= 
 // const createfeedbacktable=
 
 
